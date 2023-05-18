@@ -14,5 +14,17 @@ def mutate_genomes(input_directory, output_directory, mutation_rate):
             with open(input_file, 'r') as file:
                 lines = file.readlines()  # Read file line by line
 
-original_genome_lines = [lines[0].strip()]  # Get first line and skip other lines
+            original_genome_lines = [lines[0].strip()]  # Get first line and skip other lines
 
+            mutated_genome_lines = []
+            for line in lines[1:]:
+                mutated_line = ''
+                for base in line:
+                    if base in ('A', 'T', 'G', 'C'):
+                        if random.random() < mutation_rate:
+                            new_base = random.choice('ATGC'.replace(base, ''))  # We randomly select a new nucleotide out of the current nucleotide
+                            mutated_line += new_base
+                        else:
+                            mutated_line += base
+                    else:
+                        mutated_line += base

@@ -10,3 +10,6 @@ def mutate_genomes(input_directory, output_directory, mutation_rate):
     for file_name in genome_files:
         if file_name.endswith('.fna'):  # Processing .fna files only
             input_file = os.path.join(input_directory, file_name)
+
+            with open(input_file, 'r') as file:
+                lines = file.readlines()  # Read file line by line

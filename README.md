@@ -3,6 +3,10 @@ In this study, it is aimed to simulate new bacterial species by optimizing bacte
 
 ```
 conda install -c anaconda python
+
+# I'll add some bacterial genomes to this folder
 mkdir original_genomes
+
+python Mutation-sim.py
 
 ```

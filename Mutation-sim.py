@@ -36,3 +36,5 @@ def mutate_genomes(input_directory, output_directory, mutation_rate):
                 file.write('\n'.join(original_genome_lines + mutated_genome_lines))  # Write mutated genome lines to new location
 
             print(f"The mutated genome has been successfully saved to '{output_file}'.")
+
+    print("Whole genomes have been mutated to new locations")

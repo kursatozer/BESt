@@ -38,3 +38,9 @@ def mutate_genomes(input_directory, output_directory, mutation_rate):
             print(f"The mutated genome has been successfully saved to '{output_file}'.")
 
     print("Whole genomes have been mutated to new locations")
+
+input_directory = './original_genomes'
+output_directory = 'mutated_genomes'
+mutation_rate = 0.03
+
+mutate_genomes(input_directory, output_directory, mutation_rate)

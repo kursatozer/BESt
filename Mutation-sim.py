@@ -26,7 +26,10 @@ def mutate_genomes(input_directory, output_directory, mutation_rate, frame_shift
                     mutated_line.append(base)
 
                     # Apply deletion mutation
-                    
+                    if random.random() < deletion_rate:
+                        if len(mutated_line) > 0:
+                            mutated_line.pop()
+
                 # Apply frameshift mutation
                 if random.random() < frame_shift_rate and len(mutated_line) > 0:
                     last_base = mutated_line[-1]
@@ -46,5 +49,6 @@ input_directory = './original_genomes'
 output_directory = 'mutated_genomes'
 mutation_rate = 0.03
 frame_shift_rate = 0.01
+deletion_rate = 0.01
 
 mutate_genomes(input_directory, output_directory, mutation_rate, frame_shift_rate)

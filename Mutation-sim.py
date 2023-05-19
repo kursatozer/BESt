@@ -40,7 +40,7 @@ def mutate_genomes(input_directory, output_directory, mutation_rate, frame_shift
 
     print("Tüm bakteri genomları mutasyona uğratılarak yeni konumlara kaydedildi.")
 
-input_directory = '/home/kratzer/Desktop/aMeta-sim/cont'
+input_directory = '/home/kratzer/Mutation-sim/cont'
 output_directory = 'mutated_genomes'
 mutation_rate = 0.03
 frame_shift_rate = 0.05

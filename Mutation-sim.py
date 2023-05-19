@@ -18,7 +18,7 @@ def mutate_genomes(input_directory, output_directory, mutation_rate, frame_shift
 
             mutated_genome_lines = []
             for line in original_genome_lines:
-                mutated_line = ''
+                mutated_line = []
                 for base in line:
                     if base in ('A', 'T', 'G', 'C'):
                         if random.random() < mutation_rate:

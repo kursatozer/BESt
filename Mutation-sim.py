@@ -25,6 +25,8 @@ def mutate_genomes(input_directory, output_directory, mutation_rate, frame_shift
                             base = random.choice('ATGC') # We randomly select a new nucleotide out of the current nucleotide
                     mutated_line.append(base)
 
+                    # Apply deletion mutation
+                    
                 # Apply frameshift mutation
                 if random.random() < frame_shift_rate and len(mutated_line) > 0:
                     last_base = mutated_line[-1]

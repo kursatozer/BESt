@@ -17,7 +17,7 @@ def mutate_genomes(input_directory, output_directory, mutation_rate, frame_shift
             original_genome_lines = [line.strip() for line in lines]  # Get first line and skip other lines
 
             mutated_genome_lines = []
-            for line in lines[1:]:
+            for line in original_genome_lines:
                 mutated_line = ''
                 for base in line:
                     if base in ('A', 'T', 'G', 'C'):

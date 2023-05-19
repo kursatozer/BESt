@@ -20,7 +20,7 @@ def mutate_genomes(input_directory, output_directory, mutation_rate, frame_shift
             for line in original_genome_lines:
                 mutated_line = []
                 for base in line:
-                    if base in ('A', 'T', 'G', 'C'):
+                    if base in ['A', 'T', 'G', 'C']:
                         if random.random() < mutation_rate:
                             new_base = random.choice('ATGC'.replace(base, ''))  # We randomly select a new nucleotide out of the current nucleotide
                             mutated_line += new_base

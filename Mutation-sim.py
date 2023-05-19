@@ -22,16 +22,18 @@ def mutate_genomes(input_directory, output_directory, mutation_rate, frame_shift
                 for base in line:
                     if base in ['A', 'T', 'G', 'C']:
                         if random.random() < mutation_rate:
-                            new_base = random.choice('ATGC'.replace(base, ''))  # We randomly select a new nucleotide out of the current nucleotide
-                            mutated_line += new_base
-                        else:
-                            mutated_line += base
-                    else:
-                        mutated_line += base
+                            base = random.choice('ATGC')  # We randomly select a new nucleotide out of the current nucleotide
+                    mutated_line.append(base)
+                # Apply frameshift mutation
+                if random.random() < frame_shift_rate and len(mutated_line) > 0:
+                    last_base = mutated_line[-1]
+                    mutated_line = [last_base] + mutated_line[:-1]
 
-                mutated_genome_lines.append(mutated_line.strip())
+                mutated_genome_lines.append(''.join(mutated_line))
 
             output_file = os.path.join(output_directory, file_name)
+            with open(output_file, 'w') as file:
+                file.write('\n'.join(mutated_genome_lines))
             with open(output_file, 'w') as file:
                 file.write('\n'.join(original_genome_lines + mutated_genome_lines))  # Write mutated genome lines to new location
 
@@ -40,7 +42,10 @@ def mutate_genomes(input_directory, output_directory, mutation_rate, frame_shift
     print("Whole genomes have been mutated to new locations")
 
 input_directory = './original_genomes'
-output_directory = 'mutated_genomes'
 mutation_rate = 0.03
+frame_shift_rate = 0.01
+
+mutate_genomes(input_directory, output_directory, mutation_rate, frame_shift_rate)
+
 
 mutate_genomes(input_directory, output_directory, mutation_rate)

@@ -14,7 +14,7 @@ def mutate_genomes(input_directory, output_directory, mutation_rate, frame_shift
             with open(input_file, 'r') as file:
                 lines = file.readlines()  # Read file line by line
 
-            original_genome_lines = [lines[0].strip()]  # Get first line and skip other lines
+            original_genome_lines = [line.strip() for line in lines]  # Get first line and skip other lines
 
             mutated_genome_lines = []
             for line in lines[1:]:

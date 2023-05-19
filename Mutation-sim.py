@@ -51,4 +51,4 @@ mutation_rate = 0.03
 frame_shift_rate = 0.01
 deletion_rate = 0.01
 
-mutate_genomes(input_directory, output_directory, mutation_rate, frame_shift_rate)
+mutate_genomes(input_directory, output_directory, mutation_rate, frame_shift_rate, deletion_rate)

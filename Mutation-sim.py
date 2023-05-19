@@ -32,17 +32,17 @@ def mutate_genomes(input_directory, output_directory, mutation_rate, frame_shift
 
                 mutated_genome_lines.append(''.join(mutated_line))
 
-            output_file = os.path.join(output_directory, file_name)
+            output_file = os.path.join(output_directory, "mutated_" + file_name)
             with open(output_file, 'w') as file:
                 file.write('\n'.join(mutated_genome_lines)) # Write mutated genome lines to new location
 
-            print(f"Mutasyona uğramış genom başarıyla '{output_file}' konumuna kaydedildi.")
+            print(f"The mutated genome has been successfully saved to '{output_file}'.")
 
-    print("Tüm bakteri genomları mutasyona uğratılarak yeni konumlara kaydedildi.")
+    print("All bacterial genomes were mutated and registered in new locations.")
 
-input_directory = '/home/kratzer/Mutation-sim/cont'
+input_directory = './original_genomes'
 output_directory = 'mutated_genomes'
 mutation_rate = 0.03
-frame_shift_rate = 0.05
+frame_shift_rate = 0.01
 
 mutate_genomes(input_directory, output_directory, mutation_rate, frame_shift_rate)

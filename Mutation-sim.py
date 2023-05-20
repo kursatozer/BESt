@@ -2,10 +2,10 @@ import random
 import os
 import shutil
 
-def mutate_genomes(input_directory, output_directory, mutation_rate, frame_shift_rate):
+def mutate_genomes(input_directory, output_directory, mutation_rate, deletion_rate, frame_shift_rate):
     os.makedirs(output_directory, exist_ok=True) # Creating the output directory
 
-    genome_files = os.listdir(input_directory) # List the genome files in the home director
+    genome_files = os.listdir(input_directory) # List the genome files in the home directory
 
     for file_name in genome_files:
         if file_name.endswith('.fna'): # Processing .fna files only
@@ -22,8 +22,14 @@ def mutate_genomes(input_directory, output_directory, mutation_rate, frame_shift
                 for base in line:
                     if base in ['A', 'T', 'G', 'C']:
                         if random.random() < mutation_rate:
-                            base = random.choice('ATGC') # We randomly select a new nucleotide out of the current nucleotide
+                            base = random.choice('ATGC') # Randomly select a new nucleotide out of the current nucleotide
                     mutated_line.append(base)
+
+                # Apply deletion mutation
+                if random.random() < deletion_rate:
+                    if len(mutated_line) > 0:
+                        deletion_index = random.randint(0, len(mutated_line)-1)
+                        mutated_line.pop(deletion_index)
 
                 # Apply frameshift mutation
                 if random.random() < frame_shift_rate and len(mutated_line) > 0:
@@ -31,6 +37,10 @@ def mutate_genomes(input_directory, output_directory, mutation_rate, frame_shift
                     mutated_line = [last_base] + mutated_line[:-1]
 
                 mutated_genome_lines.append(''.join(mutated_line))
+
+            # Adjust line lengths (commented out)
+            # max_line_length = max(len(line) for line in mutated_genome_lines)
+            # mutated_genome_lines = [line.ljust(max_line_length) for line in mutated_genome_lines]
 
             output_file = os.path.join(output_directory, "mutated_" + file_name)
             with open(output_file, 'w') as file:
@@ -43,6 +53,7 @@ def mutate_genomes(input_directory, output_directory, mutation_rate, frame_shift
 input_directory = './original_genomes'
 output_directory = 'mutated_genomes'
 mutation_rate = 0.03
+deletion_rate = 0.0
 frame_shift_rate = 0.01
 
-mutate_genomes(input_directory, output_directory, mutation_rate, frame_shift_rate)
+mutate_genomes(input_directory, output_directory, mutation_rate, deletion_rate, frame_shift_rate)

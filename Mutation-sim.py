@@ -3,7 +3,7 @@ import os
 import shutil
 
 def mutate_genomes(input_directory, output_directory, point_mutation_rate, frame_shift_rate, insertion_lengths, insertion_rates, deletion_lengths, deletion_rates):
-    os.makedirs(output_directory, exist_ok=True)  # Create the output directory if it doesn't exist
+    os.makedirs(output_directory, exist_ok=True)  # Output directory is created if it doesn't exist
 
     genome_files = os.listdir(input_directory)  # List the genome files in the input directory
 
@@ -16,7 +16,7 @@ def mutate_genomes(input_directory, output_directory, point_mutation_rate, frame
 
             original_genome_lines = []
             for line in lines:
-                if line.startswith('>'):  # If the line starts with '>', it is an information line, so directly append it
+                if line.startswith('>'):  # If the line starts with '>', it is an information line, so append it directly
                     original_genome_lines.append(line.strip())
                 else:
                     mutated_line = []
@@ -29,7 +29,7 @@ def mutate_genomes(input_directory, output_directory, point_mutation_rate, frame
 
             mutated_genome_lines = []
             for line in original_genome_lines:
-                if line.startswith('>'):  # If the line starts with '>', it is an information line, so directly append it
+                if line.startswith('>'):  # If the line starts with '>', it is an information line, so append it directly
                     mutated_genome_lines.append(line)
                 else:
                     mutated_line = []
@@ -58,7 +58,7 @@ def mutate_genomes(input_directory, output_directory, point_mutation_rate, frame
 def insertions(genome_lines, insertion_lengths, insertion_rates):
     mutated_genome_lines = []
     for line in genome_lines:
-        if line.startswith('>'):  # If the line starts with '>', it is an information line, so directly append it
+        if line.startswith('>'):  # If the line starts with '>', it is an information line, so append it directly
             mutated_genome_lines.append(line)
         else:
             mutated_line = []
@@ -74,7 +74,7 @@ def insertions(genome_lines, insertion_lengths, insertion_rates):
 def deletions(genome_lines, deletion_lengths, deletion_rates):
     mutated_genome_lines = []
     for line in genome_lines:
-        if line.startswith('>'):  # If the line starts with '>', it is an information line, so directly append it
+        if line.startswith('>'):  # If the line starts with '>', it is an information line, so append it directly
             mutated_genome_lines.append(line)
         else:
             mutated_line = []
@@ -103,3 +103,4 @@ deletion_lengths = [1, 2, 3]
 deletion_rates = [0.03, 0.02, 0.01]
 
 mutate_genomes(input_directory, output_directory, point_mutation_rate, frame_shift_rate, insertion_lengths, insertion_rates, deletion_lengths, deletion_rates)
+

@@ -3,7 +3,7 @@ import os
 import shutil
 
 def mutate_genomes(input_directory, output_directory, point_mutation_rate, frame_shift_rate, insertion_lengths, insertion_rates, deletion_lengths, deletion_rates):
-    os.makedirs(output_directory, exist_ok=True)  # Output directory is created if it doesn't exist
+    os.makedirs(output_directory, exist_ok=True)  # Create the output directory if it doesn't exist
 
     genome_files = os.listdir(input_directory)  # List the genome files in the input directory
 
@@ -93,6 +93,7 @@ def deletions(genome_lines, deletion_lengths, deletion_rates):
             mutated_genome_lines.append(''.join(mutated_line))
     return mutated_genome_lines
 
+# Set the input and output directories, mutation rates, and lengths/rates for insertions and deletions
 input_directory = './original_genomes'
 output_directory = 'mutated_genomes'
 point_mutation_rate = 0.03
@@ -102,5 +103,5 @@ insertion_rates = [0.04, 0.02, 0.01]
 deletion_lengths = [1, 2, 3]
 deletion_rates = [0.03, 0.02, 0.01]
 
+# Mutate the genomes using the provided parameters
 mutate_genomes(input_directory, output_directory, point_mutation_rate, frame_shift_rate, insertion_lengths, insertion_rates, deletion_lengths, deletion_rates)
-

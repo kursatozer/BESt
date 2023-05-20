@@ -12,20 +12,14 @@ def mutate_genomes(input_directory, output_directory, point_mutation_rate, frame
             input_file = os.path.join(input_directory, file_name)
 
             with open(input_file, 'r', encoding='latin-1') as file:
-                lines = file.readlines()  # Read the file line by line
+                lines = file.readlines()  # Read the file and store lines in memory
 
             original_genome_lines = []
             for line in lines:
                 if line.startswith('>'):  # If the line starts with '>', it is an information line, so append it directly
                     original_genome_lines.append(line.strip())
                 else:
-                    mutated_line = []
-                    for base in line.strip():
-                        if base in ['A', 'T', 'G', 'C']:
-                            if random.random() < point_mutation_rate:
-                                base = random.choice('ATGC')  # Select a new nucleotide from 'ATGC' with a given probability
-                        mutated_line.append(base)
-                    original_genome_lines.append(''.join(mutated_line))
+                    original_genome_lines.append(line.strip())  # Store the line in memory
 
             mutated_genome_lines = []
             for line in original_genome_lines:
@@ -34,17 +28,14 @@ def mutate_genomes(input_directory, output_directory, point_mutation_rate, frame
                 else:
                     mutated_line = []
                     for base in line:
-                        # Apply frameshift mutation
-                        if random.random() < frame_shift_rate and len(mutated_line) > 0:
-                            last_base = mutated_line[-1]
-                            mutated_line = [last_base] + mutated_line[:-1]
+                        if base in ['A', 'T', 'G', 'C']:
+                            if random.random() < point_mutation_rate:
+                                base = random.choice('ATGC')  # Select a new nucleotide from 'ATGC' with a given probability
                         mutated_line.append(base)
                     mutated_genome_lines.append(''.join(mutated_line))
 
-            # Apply insertion mutation
             mutated_genome_with_insertions = insertions(mutated_genome_lines, insertion_lengths, insertion_rates)
 
-            # Apply deletion mutation
             mutated_genome_with_deletions = deletions(mutated_genome_with_insertions, deletion_lengths, deletion_rates)
 
             output_file = os.path.join(output_directory, "mutated_" + file_name)

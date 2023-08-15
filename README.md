@@ -7,6 +7,6 @@ conda install -c anaconda python
 # I'll add some bacterial genomes to this folder
 mkdir original_genomes
 
-python Mutation-sim.py
+python BESt.py
 
 ```
